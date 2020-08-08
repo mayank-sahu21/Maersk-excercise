@@ -1,0 +1,54 @@
+<body>
+  <html>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <div class="heading">Shuffle and Sort</div>
+    <div class="container">
+      <div id="ranNum" class="grid-container sm-container"></div>
+      <div class="btn-container">
+        <button class="btn" onclick="shuffle('shuffle')">SHUFFLE</button>
+        <button class="btn" onclick="shuffle()">SORT</button>
+      </div>
+    </div>
+    <script language="JavaScript">
+      let bgColor = [
+        "#6F98A8",
+        "#2B8EAD",
+        "#2F454E",
+        "#2B8EAD",
+        "#2F454E",
+        "#BFBFBF",
+        "#BFBFBF",
+        "#6F98A8",
+        "#2F454E",
+      ];
+      const createGrid = (elementList) => {
+        document.getElementById("ranNum").innerHTML = "";
+        for (let i = 0; i < elementList.length; i++) {
+          let newElement = document.getElementById("ranNum");
+          newElement.innerHTML =
+            newElement.innerHTML +
+            `<div class="grid-item" style ="background-color: ${bgColor[i]}; border-left: 10px solid ${bgColor[i]} !important">${elementList[i]}</div>`;
+        }
+      };
+      function shuffle(type) {
+        let numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        if (type === "shuffle") {
+          let ctr = numberList.length,
+            temp,
+            index;
+          while (ctr > 0) {
+            index = Math.floor(Math.random() * ctr);
+            ctr--;
+            temp = numberList[ctr];
+            numberList[ctr] = numberList[index];
+            numberList[index] = temp;
+          }
+        }
+        createGrid(numberList);
+      }
+      let defaultList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      createGrid(defaultList);
+    </script>
+  </html>
+</body>
